@@ -28,12 +28,30 @@ public class CruddemoApplication {
 
 			// queryForStudents(studentDAO);
 
-			queryForStudentsByLastName(studentDAO);
+			// queryForStudentsByLastName(studentDAO);
+			
+			updateStudent(studentDAO);
 		};
+	}
+
+	private void updateStudent(StudentDAO studentDAO) {
+		// Retrieve student by ID.
+		int studentId = 1;
+		Student studentFound = studentDAO.findById(studentId);
+
+		// Update a field on student.
+		studentFound.setLastName("bayirassa");
+
+		// Update student.
+		studentDAO.update(studentFound);
+
+		// Display list.
+		queryForStudents(studentDAO);
 	}
 
 	private void queryForStudentsByLastName(StudentDAO studentDAO) {
 		// get a list of students by last name
+
 		List<Student> studentList = studentDAO.findByLastName("toprak");
 
 		// Display list of students.
