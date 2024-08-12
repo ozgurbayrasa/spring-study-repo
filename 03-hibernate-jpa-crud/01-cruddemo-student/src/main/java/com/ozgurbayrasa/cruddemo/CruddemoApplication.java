@@ -40,7 +40,7 @@ public class CruddemoApplication {
 		Student studentFound = studentDAO.findById(studentId);
 
 		// Update a field on student.
-		studentFound.setLastName("bayirassa");
+		studentFound.setLastName("bayra");
 
 		// Update student.
 		studentDAO.update(studentFound);

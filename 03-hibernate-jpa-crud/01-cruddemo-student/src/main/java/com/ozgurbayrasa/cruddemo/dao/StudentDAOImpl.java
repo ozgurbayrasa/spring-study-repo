@@ -61,5 +61,10 @@ public class StudentDAOImpl implements StudentDAO {
     @Override
     public void update(Student theStudent) {
         entityManager.merge(theStudent);
+
+        // Set 'bayrasa' to 'tester' in last names.
+        entityManager
+                .createQuery("UPDATE Student s SET s.lastName = 'Tester' WHERE s.lastName = 'bayrasa'")
+                .executeUpdate();
     }
 }
