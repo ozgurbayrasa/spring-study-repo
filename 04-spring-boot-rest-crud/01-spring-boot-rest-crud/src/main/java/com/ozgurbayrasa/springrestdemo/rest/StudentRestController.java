@@ -2,10 +2,7 @@ package com.ozgurbayrasa.springrestdemo.rest;
 
 import com.ozgurbayrasa.springrestdemo.entity.Student;
 import jakarta.annotation.PostConstruct;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +16,7 @@ public class StudentRestController {
     // define @PostConstruct to load the student data only once.
     @PostConstruct
     public void loadStudents(){
-        List<Student> theStudents = new ArrayList<>();
+        this.theStudents = new ArrayList<>();
 
         theStudents.add(new Student("ozgur", "bayrasa"));
         theStudents.add(new Student("selim", "bey"));
@@ -36,7 +33,16 @@ public class StudentRestController {
     // define endpoint for "/students/{studentId}" - return student at index.
     @GetMapping("/students/{studentId}")
     public Student getStudent(@PathVariable int studentId){
+
+        // Check if student id is in the range.
+        System.out.println(theStudents.size());
+        if((studentId >= theStudents.size() || studentId < 0)){
+            throw new StudentNotFoundException("Student id not found - " + studentId);
+        }
+
         // just index into the list.
         return theStudents.get(studentId);
     }
+
+
 }
