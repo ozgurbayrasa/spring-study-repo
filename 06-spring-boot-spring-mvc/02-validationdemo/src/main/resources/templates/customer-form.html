@@ -13,13 +13,13 @@
 <i>Fill out the form. Asterisk (*) is required.</i>
 <br><br>
 
-<form th:action="@{/processForm}" th:object="customer" method="POST">
+<form th:action="@{/processForm}" th:object="${customer}" method="POST">
 
     First Name: <input type="text" th:field="*{firstName}">
 
     <br><br>
 
-    First Name: <input type="text" th:field="*{lastName}">
+    Last Name (*): <input type="text" th:field="*{lastName}">
 
     <br><br>
 
