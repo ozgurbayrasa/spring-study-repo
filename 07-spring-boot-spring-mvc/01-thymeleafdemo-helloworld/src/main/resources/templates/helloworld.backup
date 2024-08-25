@@ -3,19 +3,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Thymeleaf Demo</title>
+
+    <!-- Link CSS. -->
+    <link rel="stylesheet" th:href="@{/css/demo.css}">
 </head>
 
 <body>
     <!-- Thymeleaf add dynamic variable. -->
-    Hello World of Spring!
-
-    <br><br>
-
-    Student name: <span th:text="${param.studentName}"/>
-
-    <br><br>
-
-    The message: <span th:text="${message}"/>
-
+    <p th:text="'Time on the server is ' + ${theDate}" class="funny"/>
 </body>
 </html>
