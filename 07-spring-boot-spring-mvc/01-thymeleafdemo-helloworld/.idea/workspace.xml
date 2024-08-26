@@ -5,24 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca4ca01b-b7db-47a9-b56f-4caf8edec9a2" name="Changes" comment="Spring Thymeleaf Form Items">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ozgurbayrasa/springboot/thymeleafdemo/ThymeleafdemoApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ozgurbayrasa/springboot/thymeleafdemo/controller/DemoController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ozgurbayrasa/springboot/thymeleafdemo/controller/HelloWorldController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ozgurbayrasa/springboot/thymeleafdemo/controller/StudentController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ozgurbayrasa/springboot/thymeleafdemo/model/Student.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/demo.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/helloworld-form.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/helloworld.backup" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/helloworld.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/student-confirmation.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/student-form.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/ozgurbayrasa/springboot/thymeleafdemo/ThymeleafdemoApplicationTests.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../06-spring-boot-spring-mvc/02-validationdemo/src/main/java/com/ozgurbayrasa/springdemo/mvc/validation/CourseCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../06-spring-boot-spring-mvc/02-validationdemo/src/main/java/com/ozgurbayrasa/springdemo/mvc/validation/CourseCodeConstraintValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../06-spring-boot-spring-mvc/02-validationdemo/src/main/java/com/ozgurbayrasa/springdemo/mvc/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../06-spring-boot-spring-mvc/02-validationdemo/src/main/java/com/ozgurbayrasa/springdemo/mvc/model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../06-spring-boot-spring-mvc/02-validationdemo/src/main/resources/templates/customer-confirmation.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../06-spring-boot-spring-mvc/02-validationdemo/src/main/resources/templates/customer-confirmation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../06-spring-boot-spring-mvc/02-validationdemo/src/main/resources/templates/customer-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../06-spring-boot-spring-mvc/02-validationdemo/src/main/resources/templates/customer-form.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +56,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/bayra/Desktop/Spring/06-spring-boot-spring-mvc/02-validationdemo",
+    "last_opened_file_path": "C:/Users/bayra/Desktop/Spring/07-spring-boot-spring-mvc-crud/00-spring-boot-spring-mvc-crud-starter-code",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -103,6 +90,7 @@
       <workItem from="1724373958256" duration="7486000" />
       <workItem from="1724434087600" duration="4913000" />
       <workItem from="1724549399537" duration="628000" />
+      <workItem from="1724654739300" duration="150000" />
     </task>
     <task id="LOCAL-00001" summary="ThymeleafDemo Initial Commit">
       <option name="closed" value="true" />
