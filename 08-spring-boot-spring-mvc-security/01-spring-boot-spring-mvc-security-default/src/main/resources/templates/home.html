@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Company Home Page</title>
@@ -8,6 +8,26 @@
     <h2>Company Home Page</h2>
     <hr>
     Welcome to the company home page!
+
+    <!-- Access roles and username who has been logged in.-->
+    <p>
+        User: <span sec:authentication="principal.username">  </span>
+        <br><br>
+        Role(s): <span sec:authentication="principal.authorities">  </span>
+    </p>
+
+    <hr>
+    <!-- Add link for /leaders, for managers only-->
+    <p>
+        <a th:href="@{/leaders}">Leadership Meeting</a>
+        (Only for Manager peeps)
+    </p>
+
+    <!-- Add link for /systems, for admins only-->
+    <p>
+        <a th:href="@{/systems}">IT Systems Meeting</a>
+        (Only for Admin peeps)
+    </p>
 
     <!-- Logout method must be post, th:action should be matched with configuration.-->
     <!-- - Invalidate user's HTTP Session and remove cookies. -->
