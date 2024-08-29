@@ -24,7 +24,12 @@ public class InstructorDetail {
     // Mapped by 'instructorDetail'
     // Look on 'instructorDetail' on 'Instructor' class.
     // Use information from there (@JoinColumn) to get information
-    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+
+    // CascadeType.ALL -> If instructorDetail deleted, instructor is also deleted.
+
+    // Except CascadeType.REMOVE -> Only delete instructorDetail, not the instructor.
+    @OneToOne(mappedBy = "instructorDetail", cascade = {CascadeType.DETACH,
+            CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private Instructor instructor;
 
     // Create constructors.
