@@ -1,7 +1,6 @@
-package entity;
+package com.ozgurbayrasa.cruddemo.entity;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
 
 // Annotate class as entity table to connect db.
 @Entity
