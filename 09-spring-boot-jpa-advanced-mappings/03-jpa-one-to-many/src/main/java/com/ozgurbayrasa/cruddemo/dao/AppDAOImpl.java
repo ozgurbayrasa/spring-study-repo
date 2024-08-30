@@ -1,11 +1,15 @@
 package com.ozgurbayrasa.cruddemo.dao;
 
+import com.ozgurbayrasa.cruddemo.entity.Course;
 import com.ozgurbayrasa.cruddemo.entity.Instructor;
 import com.ozgurbayrasa.cruddemo.entity.InstructorDetail;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Repository
 
@@ -64,4 +68,34 @@ public class AppDAOImpl implements AppDAO{
         // Delete the instructor detail.
         entityManager.remove(tempInstructorDetail);
     }
+
+    @Override
+    public List<Course> findCoursesByInstructorId(int theId) {
+
+        // Create query
+        TypedQuery<Course> typedQuery = entityManager.createQuery(
+                "from Course where instructor.id = :data", Course.class);
+
+        typedQuery.setParameter("data", theId);
+
+        return typedQuery.getResultList();
+    }
+
+    @Override
+    public Instructor findInstructorByIdJoinFetch(int theId) {
+
+        // Create query
+        // This query is similar to EAGER loading, even if fetch type is lazy.
+        TypedQuery<Instructor> typedQuery = entityManager.createQuery(
+                "select i from Instructor i " +
+                        "JOIN FETCH i.courses " +
+                        "JOIN FETCH i.instructorDetail " +
+                        "where i.id = :data", Instructor.class);
+
+        typedQuery.setParameter("data", theId);
+
+        return typedQuery.getSingleResult();
+    }
+
+
 }

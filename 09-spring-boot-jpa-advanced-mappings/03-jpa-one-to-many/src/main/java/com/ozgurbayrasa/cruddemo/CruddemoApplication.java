@@ -1,12 +1,15 @@
 package com.ozgurbayrasa.cruddemo;
 
 import com.ozgurbayrasa.cruddemo.dao.AppDAO;
+import com.ozgurbayrasa.cruddemo.entity.Course;
 import com.ozgurbayrasa.cruddemo.entity.Instructor;
 import com.ozgurbayrasa.cruddemo.entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.util.List;
 
 @SpringBootApplication
 public class CruddemoApplication {
@@ -22,8 +25,95 @@ public class CruddemoApplication {
 			// findInstructor(appDAO);
 			// deleteInstructor(appDAO);
 			// findInstructorDetail(appDAO);
-			deleteInstructorDetail(appDAO);
+			// deleteInstructorDetail(appDAO);
+			// createInstructorWithCourses(appDAO);
+			// findInstructorWithCourses(appDAO);
+			// findCoursesForInstructor(appDAO);
+			findInstructorWithCoursesJoinFetch(appDAO);
 		};
+	}
+
+	private void findInstructorWithCoursesJoinFetch(AppDAO appDAO) {
+		int theId = 1;
+
+		// find the instructor.
+		System.out.println("Finding instructor id: " + theId);
+
+		Instructor tempInstructor = appDAO.findInstructorByIdJoinFetch(theId);
+
+		System.out.println("Instructor: " + tempInstructor);
+		System.out.println("Courses: " + tempInstructor.getCourses());
+
+		System.out.println("DONE");
+	}
+
+	private void findCoursesForInstructor(AppDAO appDAO) {
+		int theId = 1;
+		System.out.println("Finding instructor id: " + theId);
+
+		Instructor tempInstructor = appDAO.findInstructorById(theId);
+
+		System.out.println("Found instructor: " + tempInstructor);
+
+		// Now you can get courses
+		System.out.println("Finding courses for instructor id: " + tempInstructor.getId());
+		List<Course> courses = appDAO.findCoursesByInstructorId(tempInstructor.getId());
+
+		// Associate the objects.
+		tempInstructor.setCourses(courses);
+
+		System.out.println("The associated courses: " + tempInstructor.getCourses());
+
+	}
+
+	private void findInstructorWithCourses(AppDAO appDAO) {
+
+		int theId = 1;
+		System.out.println("Finding instructor id: " + theId);
+
+		Instructor tempInstructor = appDAO.findInstructorById(theId);
+
+		// Raises an error if fetch type is lazy. Because session will be closed.
+		System.out.println("Found instructor: " + tempInstructor);
+		System.out.println("Courses of instructor: " + tempInstructor.getCourses());
+
+		System.out.println("DONE");
+	}
+
+	private void createInstructorWithCourses(AppDAO appDAO) {
+
+		// Craete the instructor detail.
+		InstructorDetail tempInstructorDetail = new InstructorDetail(
+				"http://youtube.com",
+				"Video Games"
+		);
+
+		// Create instructor.
+		Instructor tempInstructor = new Instructor(
+				"Merve",
+				"Karaman",
+				"tyt@ayt.com"
+		);
+
+		// Associate the objects.
+		tempInstructor.setInstructorDetail(tempInstructorDetail);
+
+		// Create new courses.
+		Course tempCourse1 = new Course("Air Hockey");
+		Course tempCourse2 = new Course("Pinball");
+
+		// Add courses to the instructor's course list.
+		tempInstructor.addCourse(tempCourse1);
+		tempInstructor.addCourse(tempCourse2);
+
+		System.out.println("Saving instructor: " + tempInstructor);
+		System.out.println("The courses: " + tempInstructor.getCourses());
+
+		// Save the instructor.
+		// Also, courses will be saved, because of CascadeType.PERSIST
+
+		appDAO.save(tempInstructor);
+		System.out.println("DONE");
 	}
 
 	private void deleteInstructorDetail(AppDAO appDAO) {
