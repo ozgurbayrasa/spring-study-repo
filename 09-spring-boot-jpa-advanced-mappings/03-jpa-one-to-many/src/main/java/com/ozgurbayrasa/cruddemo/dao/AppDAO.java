@@ -27,5 +27,4 @@ public interface AppDAO {
     void updateInstructor (Instructor tempInstructor);
 
     void updateCourse (Course tempCourse);
-
 }
