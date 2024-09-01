@@ -1,10 +1,7 @@
 package com.ozgurbayrasa.cruddemo;
 
 import com.ozgurbayrasa.cruddemo.dao.AppDAO;
-import com.ozgurbayrasa.cruddemo.entity.Course;
-import com.ozgurbayrasa.cruddemo.entity.Instructor;
-import com.ozgurbayrasa.cruddemo.entity.InstructorDetail;
-import com.ozgurbayrasa.cruddemo.entity.Review;
+import com.ozgurbayrasa.cruddemo.entity.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -39,9 +36,32 @@ public class CruddemoApplication {
 
 			// retrieveCourseAndReviews(appDAO);
 
-			deleteCourseAndReviews(appDAO);
+			// deleteCourseAndReviews(appDAO);
+
+			createCourseAndStudents(appDAO);
 
 		};
+	}
+
+	private void createCourseAndStudents(AppDAO appDAO) {
+		// Create a course
+		Course tempCourse = new Course("Physics");
+
+		// Create the students
+		Student tempStudent1 = new Student("Ozgur", "Yilmaz", "abc@def.com");
+		Student tempStudent2 = new Student("Kemal", "Selen", "abc@def.com");
+
+		// Add students to the course
+		tempCourse.addStudent(tempStudent1);
+		tempCourse.addStudent(tempStudent2);
+
+		// Save the course and associate students
+		System.out.println("Saving the course: " + tempCourse);
+		System.out.println("Associated students: " + tempCourse.getStudents());
+		appDAO.saveCourse(tempCourse);
+
+		System.out.println("DONE");
+
 	}
 
 	private void deleteCourseAndReviews(AppDAO appDAO) {

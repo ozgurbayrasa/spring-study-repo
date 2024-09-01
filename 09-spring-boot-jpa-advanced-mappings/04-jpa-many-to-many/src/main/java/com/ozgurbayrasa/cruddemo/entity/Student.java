@@ -1,6 +1,8 @@
 package com.ozgurbayrasa.cruddemo.entity;
 
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,7 +22,8 @@ public class Student {
     @Column(name = "email")
     private String email;
 
-    @ManyToMany()
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH},
+    fetch = FetchType.LAZY)
     @JoinTable(
             name = "course_student",
             joinColumns = @JoinColumn(name = "student_id"),
@@ -86,5 +89,14 @@ public class Student {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    // Convenience method for adding Courses for student.
+    public void addCourse(Course tempCourse){
+        if(courses == null){
+            courses = new ArrayList<>();
+        }
+
+        courses.add(tempCourse);
     }
 }
