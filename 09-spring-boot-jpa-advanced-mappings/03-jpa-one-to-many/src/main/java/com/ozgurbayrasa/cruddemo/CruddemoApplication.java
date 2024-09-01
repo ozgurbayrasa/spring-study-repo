@@ -4,6 +4,7 @@ import com.ozgurbayrasa.cruddemo.dao.AppDAO;
 import com.ozgurbayrasa.cruddemo.entity.Course;
 import com.ozgurbayrasa.cruddemo.entity.Instructor;
 import com.ozgurbayrasa.cruddemo.entity.InstructorDetail;
+import com.ozgurbayrasa.cruddemo.entity.Review;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -32,8 +33,61 @@ public class CruddemoApplication {
 			// findInstructorWithCoursesJoinFetch(appDAO);
 			// updateInstructor(appDAO);
 			// updateCourse(appDAO);
-			deleteInstructor(appDAO);
+			// deleteCourse(appDAO);
+
+			// createCourseAndReviews(appDAO);
+
+			// retrieveCourseAndReviews(appDAO);
+
+			deleteCourseAndReviews(appDAO);
+
 		};
+	}
+
+	private void deleteCourseAndReviews(AppDAO appDAO) {
+		// Get the course id
+		int theId = 10;
+		Course tempCourse = appDAO.findCourseAndReviewsByCourseId(theId);
+
+		appDAO.deleteCourseById(theId);
+		System.out.println("DONE");
+	}
+
+	private void retrieveCourseAndReviews(AppDAO appDAO) {
+		// Get the course id
+		int theId = 10;
+		Course tempCourse = appDAO.findCourseAndReviewsByCourseId(theId);
+
+		System.out.println(tempCourse);
+		System.out.println(tempCourse.getReviews());
+	}
+
+	private void createCourseAndReviews(AppDAO appDAO) {
+		// Create a course
+		Course tempCourse = new Course("Math");
+
+		// Add some reviews
+		tempCourse.addReview(new Review("Great course."));
+		tempCourse.addReview(new Review("Good course."));
+		tempCourse.addReview(new Review("Bad course."));
+
+		// Save the course, reviews will also be saved in database since cascading.
+		System.out.println("Saving Course...");
+		System.out.println(tempCourse);
+		System.out.println(tempCourse.getReviews());
+		appDAO.saveCourse(tempCourse);
+		System.out.println("DONE!");
+
+
+	}
+
+	private void deleteCourse(AppDAO appDAO) {
+		int theId = 10;
+		System.out.println("Deleting course id: " + theId);
+
+		appDAO.deleteCourseById(theId);
+
+		System.out.println("Done");
 	}
 
 	private void updateCourse(AppDAO appDAO) {
