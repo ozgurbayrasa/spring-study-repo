@@ -39,6 +39,11 @@ public class AppDAOImpl implements AppDAO{
         return entityManager.find(Instructor.class, theId);
     }
 
+    @Override
+    public Course findCourseById(int theId) {
+        return entityManager.find(Course.class, theId);
+    }
+
     @Transactional
     @Override
     public void deleteInstructorById(int theId) {
@@ -95,6 +100,18 @@ public class AppDAOImpl implements AppDAO{
         typedQuery.setParameter("data", theId);
 
         return typedQuery.getSingleResult();
+    }
+
+    @Transactional
+    @Override
+    public void updateInstructor(Instructor tempInstructor) {
+        entityManager.merge(tempInstructor);
+    }
+
+    @Transactional
+    @Override
+    public void updateCourse(Course tempCourse) {
+        entityManager.merge(tempCourse);
     }
 
 
