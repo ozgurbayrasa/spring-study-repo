@@ -20,10 +20,22 @@ public class MyDemoLoggingAspect {
     }
      */
 
+    // Pointcut Expression: Match method specific to a class.
+
+    /*
     @Before("execution(public void com.ozgurbayrasa.aopdemo.dao.AccountDAOImpl.addAccount())")
     public void beforeAddAccountAdvice(){
         System.out.println("\n======>>> Executing @Before advice on addAccount()");
     }
+    */
+
+    // Pointcut Expression: Match any void method starts with add.
+    @Before("execution(void add*())")
+    public void beforeAddAccountAdvice(){
+        System.out.println("\n======>>> Executing @Before advice on method.");
+    }
+
+
 
 
 }

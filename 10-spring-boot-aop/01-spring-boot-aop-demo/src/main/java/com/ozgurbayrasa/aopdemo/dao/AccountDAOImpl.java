@@ -8,4 +8,11 @@ public class AccountDAOImpl implements AccountDAO{
     public void addAccount() {
         System.out.println(getClass() + ": DOING MY WORK: ADDING ACCOUNT");
     }
+
+    @Override
+    public boolean addSillyAccount() {
+        System.out.println(getClass() + ": DOING MY WORK: ADDING SILLY ACCOUNT");
+
+        return false;
+    }
 }
