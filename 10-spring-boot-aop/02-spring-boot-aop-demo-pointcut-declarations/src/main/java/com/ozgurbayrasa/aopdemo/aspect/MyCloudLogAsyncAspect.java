@@ -5,16 +5,12 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-
-// Add @Aspect annotation and @Component annotation.
 @Aspect
-@Order(2)
+@Order(1)
 @Component
-public class MyDemoLoggingAspect {
-
+public class MyCloudLogAsyncAspect {
     @Before("com.ozgurbayrasa.aopdemo.aspect.PointcutExpressions.forDaoPackageNoGetterSetter()")
-    public void beforeAddAccountAdvice(){
-        System.out.println("\n======>>> Executing @Before advice on method.");
+    public void logToCloudAsync(){
+        System.out.println("\n======>>> Logging to cloud async fashion.");
     }
-
 }
