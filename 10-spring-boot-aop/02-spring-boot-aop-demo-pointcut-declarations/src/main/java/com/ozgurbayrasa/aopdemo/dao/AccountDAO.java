@@ -2,18 +2,22 @@ package com.ozgurbayrasa.aopdemo.dao;
 
 import com.ozgurbayrasa.aopdemo.Account;
 
+import java.util.List;
+
 public interface AccountDAO {
+
+    List<Account> findAccounts();
     void addAccount(Account theAccount, boolean isVip);
 
     boolean addSillyAccount();
 
     boolean doWork();
 
-    public String getName();
+    String getName();
 
-    public void setName(String name) ;
+    void setName(String name) ;
 
-    public String getServiceCode();
+    String getServiceCode();
 
-    public void setServiceCode(String serviceCode);
+    void setServiceCode(String serviceCode);
 }

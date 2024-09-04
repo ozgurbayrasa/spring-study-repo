@@ -2,12 +2,14 @@ package com.ozgurbayrasa.aopdemo.aspect;
 
 import com.ozgurbayrasa.aopdemo.Account;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 
 
 // Add @Aspect annotation and @Component annotation.
@@ -16,8 +18,43 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyDemoLoggingAspect {
 
+    // Add a new advice dor @AfterReturning on the findAccounts method.
+    @AfterReturning(
+            pointcut = "execution(* com.ozgurbayrasa.aopdemo.dao.AccountDAO.findAccounts(..))",
+            returning = "result"
+    )
+    public void afterReturningFindAccountAdvice(JoinPoint joinPoint, List<Account> result){
+        // Point out which method we are advising on.
+        String method = joinPoint.getSignature().toShortString();
+        System.out.println("\n======>>> Executing @AfterReturning advice on method: " + method);
+
+        // Print out the results of the method call.
+        System.out.println("\n======>>>Returned: " + result);
+
+        // Let's Post-process the data
+
+        // Convert the account names to uppercase
+        convertAccountNamesToUpperCase(result);
+
+        System.out.println("\n======>>>Result is: " + result);
+    }
+
+    private void convertAccountNamesToUpperCase(List<Account> result) {
+        // Loop through accounts.
+
+        for(Account tempAccount : result){
+            // Get uppercase version of name.
+            String theUpperName = tempAccount.getName().toUpperCase();
+
+            // Update the name on the account.
+            tempAccount.setName(theUpperName);
+        }
+    }
+
     @Before("com.ozgurbayrasa.aopdemo.aspect.PointcutExpressions.forDaoPackageNoGetterSetter()")
     public void beforeAddAccountAdvice(JoinPoint joinPoint){
+        System.out.println("\n======>>> Executing @Before advice on method.");
+
 
         // Display the method signature.
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
@@ -40,7 +77,6 @@ public class MyDemoLoggingAspect {
             }
         }
 
-        System.out.println("\n======>>> Executing @Before advice on method.");
     }
 
 }
