@@ -25,7 +25,7 @@ public class AopdemoApplication {
 
 	private void demoTheBeforeAdvice(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO) {
 		// Call business method.
-		theAccountDAO.addAccount(new Account(), true);
+		theAccountDAO.addAccount(new Account("Ozgur", "cloudService"), true);
 		theAccountDAO.addSillyAccount();
 		theAccountDAO.doWork();
 
