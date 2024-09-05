@@ -13,7 +13,13 @@ public class AccountDAOImpl implements AccountDAO{
     private String serviceCode;
 
     @Override
-    public List<Account> findAccounts() {
+    public List<Account> findAccounts(boolean tripWire) {
+
+        // Simulate an exception.
+        if(tripWire){
+            throw new RuntimeException("No soup for you!!!");
+        }
+
         List<Account> accountList = new ArrayList<>();
 
         // Create sample accounts.
@@ -22,6 +28,11 @@ public class AccountDAOImpl implements AccountDAO{
         accountList.add(new Account("Mustafa", "Platinum"));
 
         return accountList;
+    }
+
+    @Override
+    public List<Account> findAccounts() {
+        return findAccounts(false);
     }
 
     @Override

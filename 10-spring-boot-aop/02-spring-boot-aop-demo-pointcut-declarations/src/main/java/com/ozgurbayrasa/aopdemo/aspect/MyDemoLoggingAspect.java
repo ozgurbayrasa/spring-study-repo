@@ -2,9 +2,7 @@ package com.ozgurbayrasa.aopdemo.aspect;
 
 import com.ozgurbayrasa.aopdemo.Account;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -18,7 +16,31 @@ import java.util.List;
 @Component
 public class MyDemoLoggingAspect {
 
-    // Add a new advice dor @AfterReturning on the findAccounts method.
+    // Add new advice for @After on the findAccounts method.
+    @After("execution(* com.ozgurbayrasa.aopdemo.dao.AccountDAO.findAccounts(..))")
+    public void afterFinallyFindAccountsAdvice(JoinPoint joinPoint){
+        // Point out which method we are advising on.
+        String method = joinPoint.getSignature().toShortString();
+        System.out.println("\n======>>> Executing @AfterThrowing advice on method: " + method);
+    }
+
+    // Add new advice for @AfterThrowing on the findAccounts method.
+
+    @AfterThrowing(
+            pointcut = "execution(* com.ozgurbayrasa.aopdemo.dao.AccountDAO.findAccounts(..))",
+            throwing = "theExc"
+    )
+    public void afterThrowingFindAccountsAdvice(JoinPoint joinPoint, Throwable theExc){
+
+        // Point out which method we are advising on.
+        String method = joinPoint.getSignature().toShortString();
+        System.out.println("\n======>>> Executing @AfterThrowing advice on method: " + method);
+
+        // Log the exception.
+        System.out.println("\n======>>>Exception is: " + theExc);
+    }
+
+    // Add new advice for @AfterReturning on the findAccounts method.
     @AfterReturning(
             pointcut = "execution(* com.ozgurbayrasa.aopdemo.dao.AccountDAO.findAccounts(..))",
             returning = "result"

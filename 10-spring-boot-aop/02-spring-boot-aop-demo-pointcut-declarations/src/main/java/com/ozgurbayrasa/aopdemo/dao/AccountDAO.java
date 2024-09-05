@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface AccountDAO {
 
+    List<Account> findAccounts(boolean tripWire);
     List<Account> findAccounts();
     void addAccount(Account theAccount, boolean isVip);
 
@@ -20,4 +21,6 @@ public interface AccountDAO {
     String getServiceCode();
 
     void setServiceCode(String serviceCode);
+
+
 }

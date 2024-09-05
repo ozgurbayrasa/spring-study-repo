@@ -22,8 +22,48 @@ public class AopdemoApplication {
 		return runner -> {
 
 			// demoTheBeforeAdvice(theAccountDAO, theMembershipDAO);
-			demoTheAfterReturningAdvice(theAccountDAO);
+			// demoTheAfterReturningAdvice(theAccountDAO);
+			// demoTheAfterThrowingAdvice(theAccountDAO);
+			demoTheAfterAdvice(theAccountDAO);
 		};
+	}
+
+	private void demoTheAfterAdvice(AccountDAO theAccountDAO) {
+		// Call method to find accounts.
+		List<Account> theAccounts = null;
+
+		try{
+			// Add a boolean flag the simulate exceptions.
+			boolean tripWire = true;
+			theAccounts = theAccountDAO.findAccounts(tripWire);
+		}catch (Exception exc){
+			System.out.println("\n\nMainProgram: ... caught exception: " + exc);
+		}
+
+		System.out.println("\n\nMainProgram: demoTheAfterThrowingAdvice");
+		System.out.println("------------");
+
+		System.out.println(theAccounts);
+		System.out.println("\n");
+	}
+
+	private void demoTheAfterThrowingAdvice(AccountDAO theAccountDAO) {
+		// Call method to find accounts.
+		List<Account> theAccounts = null;
+
+		try{
+			// Add a boolean flag the simulate exceptions.
+			boolean tripWire = true;
+			theAccounts = theAccountDAO.findAccounts(tripWire);
+		}catch (Exception exc){
+			System.out.println("\n\nMainProgram: ... caught exception: " + exc);
+		}
+
+		System.out.println("\n\nMainProgram: demoTheAfterThrowingAdvice");
+		System.out.println("------------");
+
+		System.out.println(theAccounts);
+		System.out.println("\n");
 	}
 
 	private void demoTheAfterReturningAdvice(AccountDAO theAccountDAO) {
