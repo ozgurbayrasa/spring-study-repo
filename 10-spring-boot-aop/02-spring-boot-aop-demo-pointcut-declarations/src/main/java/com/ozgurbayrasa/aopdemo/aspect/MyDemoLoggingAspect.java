@@ -21,7 +21,7 @@ public class MyDemoLoggingAspect {
     public void afterFinallyFindAccountsAdvice(JoinPoint joinPoint){
         // Point out which method we are advising on.
         String method = joinPoint.getSignature().toShortString();
-        System.out.println("\n======>>> Executing @AfterThrowing advice on method: " + method);
+        System.out.println("\n======>>> Executing @After advice on method: " + method);
     }
 
     // Add new advice for @AfterThrowing on the findAccounts method.
