@@ -34,7 +34,7 @@ public class AopdemoApplication {
 
 		try{
 			// Add a boolean flag the simulate exceptions.
-			boolean tripWire = true;
+			boolean tripWire = false;
 			theAccounts = theAccountDAO.findAccounts(tripWire);
 		}catch (Exception exc){
 			System.out.println("\n\nMainProgram: ... caught exception: " + exc);
