@@ -28,8 +28,18 @@ public class MyDemoLoggingAspect {
         // Get begin timestamp.
         long begin = System.currentTimeMillis();
 
+        Object result = null;
         // Execute the method.
-        Object result = proceedingJoinPoint.proceed();
+        try {
+            result = proceedingJoinPoint.proceed();
+
+        }catch (Exception exc){
+            // Log the exception.
+            System.out.println("Exception handled: " + exc.getMessage());
+
+            // Give user a custom message.
+            result = "Major Accident!";
+        }
 
         // Get end timestamp.
         long end = System.currentTimeMillis();
